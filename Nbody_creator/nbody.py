@@ -95,7 +95,8 @@ def simulate(
 	G         = 1.0, 
  	r = 1.0,# Newton's Gravitational Constant
 	p_const   = 2.0, 
-	plotRealTime = True # switch on for plotting as the simulation goes along
+	plotRealTime = True,
+	x=None # switch on for plotting as the simulation goes along
 	#
 	):
 	""" N-body simulation """
@@ -107,7 +108,10 @@ def simulate(
 	#np.random.seed(17)            # set the random number generator seed
 	
 	mass = np.ones((N,1))  # total mass of particles is 20
-	pos  = np.random.randn(N,3) * r   # randomly selected positions and velocities on the sphere with radius 1.0
+	if x is None:
+		pos  = np.random.randn(N,3) * r
+	else:
+		pos = x   # randomly selected positions and velocities on the sphere with radius 1.0
 	vel  = np.random.randn(N,3)
 	#mass = mass_r(0.5,p_const,np.linalg.norm(pos,axis=-1)).reshape(N,1)
 	#print(mass)
